@@ -2,7 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-// import { ExceptionInterceptor } from './common/interceptors/exception.interceptor';
+import { ExceptionInterceptor } from './common/interceptors/exception.interceptor';
 
 /** Starts the application */
 async function bootstrap(): Promise<void> {
