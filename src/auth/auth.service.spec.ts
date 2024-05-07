@@ -1,7 +1,10 @@
 import { Provider } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserTokens } from '@prisma/client';
+
+const { UserTokens } = require('@prisma/client');
+
+
 import { isDate, isUUID } from 'class-validator';
 import { accessJwtConfig, refreshJwtConfig } from 'src/config/jwt.config';
 import { UserService } from 'src/models/user/user.service';
@@ -32,7 +35,8 @@ const userArray = [
   },
 ];
 
-let userTokensArray: UserTokens[] = [];
+// let userTokensArray: UserTokens[] = [];
+let userTokensArray = UserTokens;
 
 const UserServiceMock = {
   provide: UserService,

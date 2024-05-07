@@ -16,7 +16,7 @@ async function bootstrap(): Promise<void> {
     }),
   );
 
-  // app.useGlobalInterceptors(new ExceptionInterceptor());
+  app.useGlobalInterceptors(new ExceptionInterceptor());
 
   const config = new DocumentBuilder()
     .setTitle('eCommerce Back End')

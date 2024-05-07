@@ -1,5 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Role } from '@prisma/client';
+// import { Role } from '@prisma/client';
+
+const { Role } = require('@prisma/client');
+
+
 import currency from 'currency.js';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePurchaseDto } from './dto/create-purchase.dto';

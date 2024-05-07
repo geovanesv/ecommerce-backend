@@ -1,73 +1,107 @@
+<h1 align="center">E-Commerce Backend</h1>
+<p align="center">API com endpoints para criação de usuários, produtos, compras e avaliações com autenticação e autorização</p>
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## 📑 Índice
+<!--ts-->
+   * [📌 Features](#-features)
+   * [🔧 Instalação](#-instalação)
+   * [🔩 Testes](#-testes)
+   * [🖇️ Requisições no Insomnia](#%EF%B8%8F-requisições-no-insomnia)
+   * [💻 Tecnologias](#-tecnologias)
+<!--te-->
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 📌 Features
 
-## Description
+- [x] CRUD de usuários
+-   [x] Autenticação de usuário
+    -   [x] Rotação de Refresh Token
+        -   [x] Detecção de Reuso Automático
+-   [x] Autorização de usuário (admin)
+- [x] CRUD de produtos
+  - [x] Upload de imagens
+- [x] CRUD de categorias
+- [x] CRUD de compras
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🔧 Instalação
 
-## Installation
+1. Você precisará ter o [Node.js](https://nodejs.org/en/) instalado
 
-```bash
-$ yarn install
-```
+2. Instalação
 
-## Running the app
+  ```bash
+    # Clona o projeto para sua máquina
+    git clone https://github.com/geovanesv/ecommerce-backend
 
-```bash
-# development
-$ yarn run start
+    # Entra na pasta do projeto
+    cd ecommerce-backend
 
-# watch mode
-$ yarn run start:dev
+    # Instala as dependências
+    yarn
+  ```
 
-# production mode
-$ yarn run start:prod
-```
+3. Crie um arquivo .env na raiz do projeto preenchendo as informações descritas no [.env.example]
 
-## Test
+4. Iniciar servidor
 
-```bash
-# unit tests
-$ yarn run test
+  ```bash
+    # Roda as migrations
+    yarn migrate:dev 
 
-# e2e tests
-$ yarn run test:e2e
+    # Inicia o servidor em modo de desenvolvimento
+    yarn start:dev
 
-# test coverage
-$ yarn run test:cov
-```
+    # O servidor abrirá na porta 3000. 
+    # Você pode acessar a documentação com Swagger em http://localhost:3000/api/
 
-## Support
+    # Para visualizar o banco de dados
+    yarn prisma studio
+  ```    
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 🔩 Testes
 
-## Stay in touch
+- Crie um arquivo .env.test na raiz do projeto alterando no mínimo o banco de dados que colocou no .env
+  - Exemplo: postgresql://username:password@localhost:5432/<ins>ecommerceNest</ins>?schema=public
+    
+  ```bash
+    # Roda as migrations no bando de testes
+    yarn migrate:test 
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+    # Roda todos os testes unitários e de integração
+    # Pode demorar alguns poucos minutos
+    # 10 suites e 187 testes
+    yarn test:all
 
-## License
+    # Roda apenas os testes unitários
+    yarn test
 
-Nest is [MIT licensed](LICENSE).
+    # Roda apenas os testes de integração
+    yarn test:e2e
+
+    # Para visualizar o banco de dados de testes
+    yarn studio:test
+  ```
+ 
+## 💻 Tecnologias
+
+- [Typescript](https://www.typescriptlang.org/) - tooling e minimizar erros
+- [Node.js](https://nodejs.org/en/) e [NestJS](https://nestjs.com/) com [Express](https://expressjs.com/) - construir o servidor
+- [Prisma](https://www.prisma.io/) com [PostgreSQL](https://www.postgresql.org/) - armazenar dados
+- [Passport](https://www.passportjs.org/) e [passport-jwt](https://www.passportjs.org/packages/passport-jwt/) - autenticação com Json Web Token
+- [Class-validator](https://github.com/typestack/class-validator) e [class-transformer](https://github.com/typestack/class-transformer) - validações nos dados de entrada dos endpoints
+- [Bcrypt](https://github.com/kelektiv/node.bcrypt.js) - hashs de senhas
+- [currency.js](https://currency.js.org/) - cálculos monetários
+- [ms](https://github.com/vercel/ms) - cálculo da data de expiração do refresh token
+- [Prisma-error-enum](https://github.com/vinpac/prisma-error-enum) - identificar os códigos para tratar as exceções do prisma
+- [Jest](https://jestjs.io/), [SuperTest](https://github.com/visionmedia/supertest) - testes
+- [Swagger UI Express](https://github.com/scottie1984/swagger-ui-express) e [compodoc](https://github.com/compodoc/compodoc) - documentação
+- [ESLint](https://eslint.org/) e [Prettier](https://prettier.io/) - linting e formatação de código
+
+
